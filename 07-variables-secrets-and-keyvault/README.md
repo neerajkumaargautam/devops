@@ -76,11 +76,11 @@ steps:
 ```
 
 ## 5. Gotchas I Hit Along the Way
-Key Vault RBAC vs. Access Policies: If your Key Vault uses Azure RBAC (the newer default) instead of legacy Vault Access Policies, linking the Variable Group will throw a Forbidden error unless your Service Connection's Service Principal has the Key Vault Secrets User role assigned on that Key Vault.
+- Key Vault RBAC vs. Access Policies: If your Key Vault uses Azure RBAC (the newer default) instead of legacy Vault Access Policies, linking the Variable Group will throw a Forbidden error unless your Service Connection's Service Principal has the Key Vault Secrets User role assigned on that Key Vault.
 
-Pipeline authorization prompt: The very first time a YAML file references a new group:, the pipeline pauses with "This pipeline needs permission to access a resource before this run can continue". You just click View → Permit once in the UI and subsequent runs flow automatically.
+- Pipeline authorization prompt: The very first time a YAML file references a new group:, the pipeline pauses with "This pipeline needs permission to access a resource before this run can continue". You just click View → Permit once in the UI and subsequent runs flow automatically.
 
-Double-dash -- vs. Dot . naming: Azure Key Vault doesn't allow dots . in secret names, whereas FileTransform@1 looks for dots (ConnectionStrings.DefaultConnection) to match JSON hierarchy. Either name your secret ConnectionStrings--DefaultConnection and let ASP.NET Core bind it directly from environment variables, or map it to a dotted pipeline variable in YAML.
+- Double-dash -- vs. Dot . naming: Azure Key Vault doesn't allow dots . in secret names, whereas FileTransform@1 looks for dots (ConnectionStrings.DefaultConnection) to match JSON hierarchy. Either name your secret ConnectionStrings--DefaultConnection and let ASP.NET Core bind it directly from environment variables, or map it to a dotted pipeline variable in YAML.
 
 ## 6. Hands-On Checklist
 - [x] Spun up a test Azure Key Vault (kv-dotnet-lab-dev) and added a dummy SQL connection string and JWT secret.
